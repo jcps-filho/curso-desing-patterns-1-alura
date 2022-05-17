@@ -2,6 +2,8 @@ package br.dev.josecarlos;
 
 import java.math.BigDecimal;
 
+import br.dev.josecarlos.desconto.CalculadoraDeDescontosComChain;
+import br.dev.josecarlos.desconto.CalculadoraDeDescontosSemChain;
 import br.dev.josecarlos.imposto.CalculadoraDeImpostosComStrategy;
 import br.dev.josecarlos.imposto.CalculadoraDeImpostosSemStrategy;
 import br.dev.josecarlos.imposto.ISS;
@@ -12,15 +14,25 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		Orcamento orcamento = new Orcamento(new BigDecimal("100"));
+		Orcamento orcamento1 = new Orcamento(new BigDecimal("200"), 6);
+		Orcamento orcamento2 = new Orcamento(new BigDecimal("1000"), 1);
 		
 		//Implementação SEM Strategy
 		CalculadoraDeImpostosSemStrategy calculadoraSemStrategy = new CalculadoraDeImpostosSemStrategy();
-		System.out.println(calculadoraSemStrategy.calcular(orcamento, TipoImposto.ISS));
+		System.out.println(calculadoraSemStrategy.calcular(orcamento1, TipoImposto.ISS));
 		
 		//Implementação COM Strategy
 		CalculadoraDeImpostosComStrategy calculadoraDeImpostosComStrategy = new CalculadoraDeImpostosComStrategy();
-		System.out.println(calculadoraDeImpostosComStrategy.calcular(orcamento, new ISS()));
-
+		System.out.println(calculadoraDeImpostosComStrategy.calcular(orcamento1, new ISS()));
+		
+		//Implementação SEM Chain Responsability
+		CalculadoraDeDescontosSemChain calculadoraDeDescontosSemChain = new CalculadoraDeDescontosSemChain();
+		System.out.println(calculadoraDeDescontosSemChain.calcular(orcamento1));
+		System.out.println(calculadoraDeDescontosSemChain.calcular(orcamento2));
+		
+		//Implementação COM Chain Responsability
+		CalculadoraDeDescontosComChain calculadoraDeDescontosComChain = new CalculadoraDeDescontosComChain();
+		System.out.println(calculadoraDeDescontosComChain.calcular(orcamento1));
+		System.out.println(calculadoraDeDescontosComChain.calcular(orcamento2));
 	}
 }
