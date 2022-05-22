@@ -1,19 +1,24 @@
 package br.dev.josecarlos.pedido;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import br.dev.josecarlos.orcamento.Orcamento;
+import br.dev.josecarlos.pedido.acao.AcoesAposGerarPedido;
 
 public class GeraPedidoHandler {
 	
-	// Construtor com injeção de dependências: Service, Repository...
+	private List<AcoesAposGerarPedido> acoesAposGerarPedido;
 	
+	public GeraPedidoHandler(List<AcoesAposGerarPedido> acoesAposGerarPedido) {
+		this.acoesAposGerarPedido = acoesAposGerarPedido;
+	}
+
 	public void executar(GeraPedido dados) {
 		Orcamento orcamento = new Orcamento(dados.getValorOrcamento(), dados.getQuantidadeItens());
 		Pedido pedido = new Pedido(dados.getCliente(), LocalDateTime.now(), orcamento);
 		
-		System.out.println("Executar inserção no banco de dados");
-		System.out.println("Executar envio de email com dados do pedido");
+		this.acoesAposGerarPedido.forEach(a -> a.executarAcao(pedido));
 	}
 
 }

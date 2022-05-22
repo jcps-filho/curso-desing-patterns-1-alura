@@ -1,9 +1,12 @@
 package br.dev.josecarlos;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 import br.dev.josecarlos.pedido.GeraPedido;
 import br.dev.josecarlos.pedido.GeraPedidoHandler;
+import br.dev.josecarlos.pedido.acao.CriarPedidoNoBanco;
+import br.dev.josecarlos.pedido.acao.EnviarPedidoPorEmail;
 
 public class TestePedido {
 
@@ -13,7 +16,9 @@ public class TestePedido {
 		int quantidadeItens = 3;
 		
 		GeraPedido gerador = new GeraPedido(cliente, valorOrcamento, quantidadeItens);
-		GeraPedidoHandler handler = new GeraPedidoHandler();
+		GeraPedidoHandler handler = new GeraPedidoHandler(Arrays.asList(
+				new EnviarPedidoPorEmail(),
+				new CriarPedidoNoBanco()));
 		handler.executar(gerador);
 
 	}
