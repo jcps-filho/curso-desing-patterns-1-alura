@@ -2,16 +2,21 @@ package br.dev.josecarlos.orcamento;
 
 import java.math.BigDecimal;
 
+import br.dev.josecarlos.orcamento.situacao.EmAnalise;
+import br.dev.josecarlos.orcamento.situacao.Finalizado;
+import br.dev.josecarlos.orcamento.situacao.SituacaoOrcamento;
+
 public class Orcamento {
 	
 	private BigDecimal valor;
-	private int quantidade;
+	private int quantidadeItens;
 	private SituacaoOrcamento situacao;
 
 	public Orcamento(BigDecimal valor, int quantidade) {
 		super();
 		this.valor = valor;
-		this.quantidade = quantidade;
+		this.quantidadeItens = quantidade;
+		this.situacao = new EmAnalise();
 	}
 	
 	public void aplicarDescontoExtra() {
@@ -24,8 +29,8 @@ public class Orcamento {
 		return valor;
 	}
 	
-	public int getQuantidade() {
-		return quantidade;
+	public int getQuantidadeItens() {
+		return quantidadeItens;
 	}
 	
 	public void aprovar() {
@@ -46,5 +51,9 @@ public class Orcamento {
 
 	public void setSituacao(SituacaoOrcamento situacao) {
 		this.situacao = situacao;
+	}
+
+	public boolean isFinalizado() {
+		return this.situacao instanceof Finalizado;
 	}
 }

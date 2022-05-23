@@ -1,6 +1,8 @@
-package br.dev.josecarlos.orcamento;
+package br.dev.josecarlos.orcamento.situacao;
 
 import java.math.BigDecimal;
+
+import br.dev.josecarlos.orcamento.Orcamento;
 
 public class Aprovado extends SituacaoOrcamento {
 	

@@ -7,7 +7,7 @@ import br.dev.josecarlos.orcamento.Orcamento;
 public class CalculadoraDeDescontosSemChain {
 	
 	public BigDecimal calcular(Orcamento orcamento) {
-		if (orcamento.getQuantidade() > 5) {
+		if (orcamento.getQuantidadeItens() > 5) {
 			return orcamento.getValor().multiply(new BigDecimal("0.1"));
 		}
 		

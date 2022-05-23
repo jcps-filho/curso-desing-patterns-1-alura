@@ -1,4 +1,6 @@
-package br.dev.josecarlos.orcamento;
+package br.dev.josecarlos.orcamento.situacao;
+
+import br.dev.josecarlos.orcamento.Orcamento;
 
 public class Reprovado extends SituacaoOrcamento {
 	
