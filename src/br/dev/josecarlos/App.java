@@ -23,7 +23,7 @@ public class App {
 		
 		//Implementação COM Strategy
 		CalculadoraDeImpostosComStrategy calculadoraDeImpostosComStrategy = new CalculadoraDeImpostosComStrategy();
-		System.out.println(calculadoraDeImpostosComStrategy.calcular(orcamento1, new ISS()));
+		System.out.println(calculadoraDeImpostosComStrategy.calcular(orcamento1, new ISS(null)));
 		
 		//Implementação SEM Chain Responsability
 		CalculadoraDeDescontosSemChain calculadoraDeDescontosSemChain = new CalculadoraDeDescontosSemChain();
